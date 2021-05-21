@@ -1,10 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import SensorList from './SensorList'
+import SystemStatus from './SystemStatus'
 
 export default function SensorDataTab() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Sensor Data</Text>
+      <SystemStatus />
+      <SensorList />
     </View>
   )
 }
