@@ -1,10 +1,10 @@
-import { Layout, Text } from "@ui-kitten/components";
-import React from "react";
+import React from 'react'
+import { View, Text } from 'react-native'
 
 export default function GraphTab() {
   return (
-    <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text category='h1'>Graph Data</Text>
-    </Layout>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Graph</Text>
+    </View>
   )
 }

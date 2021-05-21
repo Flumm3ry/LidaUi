@@ -1,13 +1,22 @@
-import { TabBar, Tab } from "@ui-kitten/components";
+import { ButtonGroup } from 'react-native-elements'
+import React from 'react'
+import { NavigationState, ParamListBase } from '@react-navigation/routers'
+import { NavigationProp } from '@react-navigation/core'
 
-export default function TobTabBar ({state, navigation}) {
+interface TopAppBarProps {
+  state: NavigationState
+  navigation: NavigationProp<ParamListBase>
+}
+
+export default function TobTabBar({ state, navigation }: TopAppBarProps) {
   return (
-    <TabBar
+    <ButtonGroup
       selectedIndex={state.index}
-      onSelect={index => navigation.navigate(state.routeNames[index])}>
-      <Tab title='Sensor Data'/>
-      <Tab title='Graph'/>
-      <Tab title='System Log'/>
-    </TabBar>
+      onPress={(index) => {
+        console.log(state.routeNames[index])
+        navigation.navigate(state.routeNames[index])
+      }}
+      buttons={['Sensor Data', 'Graph', 'System Logs']}
+    />
   )
 }
