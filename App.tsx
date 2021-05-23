@@ -3,7 +3,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider, Header, Theme } from 'react-native-elements'
-import TabNavigator from './components/navigation/TabNavigator'
+import TabNavigator from './src/components/navigation/TabNavigator'
 import { NavigationContainer } from '@react-navigation/native'
 
 const theme: Theme = {

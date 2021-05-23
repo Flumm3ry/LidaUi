@@ -1,12 +1,22 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
+import useGlobalPadding from '../../hooks/useGlobalPadding'
 import LogList from './LogList'
 
 export default function SystemLogTab() {
+  const { horizontalPadding } = useGlobalPadding()
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>System Logs</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: horizontalPadding,
+        paddingRight: horizontalPadding,
+      }}
+    >
       <LogList />
       <View
         style={{
