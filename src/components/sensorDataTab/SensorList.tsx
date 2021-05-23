@@ -1,10 +1,6 @@
 import React from 'react'
-import { Avatar, ListItem } from 'react-native-elements'
-import { StyleProp, ViewStyle, Text, View } from 'react-native'
-
-const listItemStyle: StyleProp<ViewStyle> = {
-  width: '100%',
-}
+import { Avatar, Divider, ListItem, Text } from 'react-native-elements'
+import { View } from 'react-native'
 
 export default function SensorList() {
   return (
@@ -13,7 +9,8 @@ export default function SensorList() {
         <Text>Sensor Data</Text>
         <Text>Last Polled 4:00PM</Text>
       </View>
-      <ListItem style={listItemStyle}>
+      <Divider />
+      <ListItem>
         <Avatar
           source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }}
         />
@@ -23,7 +20,7 @@ export default function SensorList() {
         </ListItem.Content>
         <Text>{'43\u00b0C'}</Text>
       </ListItem>
-      <ListItem style={listItemStyle}>
+      <ListItem>
         <Avatar
           source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }}
         />
@@ -32,7 +29,7 @@ export default function SensorList() {
         </ListItem.Content>
         <Text>70%</Text>
       </ListItem>
-      <ListItem style={listItemStyle}>
+      <ListItem>
         <Avatar
           source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }}
         />
@@ -42,7 +39,7 @@ export default function SensorList() {
         </ListItem.Content>
         <Text>0.007%</Text>
       </ListItem>
-      <ListItem style={listItemStyle}>
+      <ListItem>
         <Avatar
           source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }}
         />
@@ -52,7 +49,7 @@ export default function SensorList() {
         </ListItem.Content>
         <Text>86.67%</Text>
       </ListItem>
-      <ListItem style={listItemStyle}>
+      <ListItem>
         <Avatar
           source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }}
         />

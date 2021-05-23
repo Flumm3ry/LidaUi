@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, StyleProp, ViewStyle } from 'react-native'
-import { Button } from 'react-native-elements'
+import { View, StyleProp, ViewStyle } from 'react-native'
+import { Button, Text } from 'react-native-elements'
 
 const container: StyleProp<ViewStyle> = {
   width: '100%',

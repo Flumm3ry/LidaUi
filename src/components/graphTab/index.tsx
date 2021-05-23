@@ -1,11 +1,12 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Button } from 'react-native-elements'
-import useGlobalPadding from '../../hooks/useGlobalPadding'
+import { Button, useTheme } from 'react-native-elements'
+import useGlobalStyles from '../../hooks/useGlobalStyles'
 import Graph from './Graph'
 
 export default function GraphTab() {
-  const { horizontalPadding } = useGlobalPadding()
+  const { horizontalPadding } = useGlobalStyles()
+  const { theme } = useTheme()
 
   return (
     <View
@@ -15,6 +16,7 @@ export default function GraphTab() {
         alignItems: 'center',
         paddingLeft: horizontalPadding,
         paddingRight: horizontalPadding,
+        backgroundColor: theme.colors?.black,
       }}
     >
       <Graph />

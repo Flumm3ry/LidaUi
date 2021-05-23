@@ -1,10 +1,10 @@
 import React from 'react'
 import { LineChart } from 'react-native-chart-kit'
-import { Text } from 'react-native'
-import useGlobalPadding from '../../hooks/useGlobalPadding'
+import { Text } from 'react-native-elements'
+import useGlobalStyles from '../../hooks/useGlobalStyles'
 
 export default function Graph() {
-  const { contentWidth } = useGlobalPadding()
+  const { contentWidth } = useGlobalStyles()
 
   return (
     <>

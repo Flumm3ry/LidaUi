@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { Button } from 'react-native-elements'
-import useGlobalPadding from '../../hooks/useGlobalPadding'
+import { View } from 'react-native'
+import { Button, useTheme } from 'react-native-elements'
+import useGlobalStyles from '../../hooks/useGlobalStyles'
 import LogList from './LogList'
 
 export default function SystemLogTab() {
-  const { horizontalPadding } = useGlobalPadding()
+  const { horizontalPadding } = useGlobalStyles()
+  const { theme } = useTheme()
 
   return (
     <View
@@ -15,6 +16,7 @@ export default function SystemLogTab() {
         alignItems: 'center',
         paddingLeft: horizontalPadding,
         paddingRight: horizontalPadding,
+        backgroundColor: theme.colors?.black,
       }}
     >
       <LogList />

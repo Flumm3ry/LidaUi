@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native'
 
-export default function useGlobalPadding() {
+export default function useGlobalStyles() {
   const globalPaddingPercentage = 10
 
   const horizontalPadding = (Dimensions.get('window').width * globalPaddingPercentage) / 100

@@ -1,4 +1,7 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBarProps,
+} from '@react-navigation/material-top-tabs'
 import React from 'react'
 import GraphTab from '../graphTab'
 import SensorDataTab from '../sensorDataTab'
@@ -9,7 +12,12 @@ const { Navigator, Screen } = createMaterialTopTabNavigator()
 
 export default function TabNavigator() {
   return (
-    <Navigator tabBar={(props) => <TopTabBar {...props} />}>
+    <Navigator
+      style={{ backgroundColor: '#313134' }}
+      tabBar={(props: MaterialTopTabBarProps) => (
+        <TopTabBar navigation={props.navigation} state={props.state} />
+      )}
+    >
       <Screen name="SensorData" component={SensorDataTab} />
       <Screen name="Graph" component={GraphTab} />
       <Screen name="SystemLog" component={SystemLogTab} />
