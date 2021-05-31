@@ -7,12 +7,13 @@ const container: StyleProp<ViewStyle> = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
+  marginBottom: 14,
 }
 
 export default function SystemStatus() {
   return (
     <View style={container}>
-      <View>
+      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Text>System Status:</Text>
         <Text>Online</Text>
       </View>

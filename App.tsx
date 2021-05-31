@@ -13,6 +13,9 @@ const theme: Theme = {
     black: '#000000',
     grey0: '#5E5E60',
     grey1: '#313134',
+    success: '#009876',
+    warning: '#F6A623',
+    error: '#DE415A',
   },
   ButtonGroup: {
     containerStyle: { borderRadius: 15 },
@@ -22,7 +25,7 @@ const theme: Theme = {
     selectedButtonStyle: { backgroundColor: '#5E5E60' },
   },
   Button: {
-    style: { borderRadius: 15 },
+    containerStyle: { borderRadius: 10 },
   },
   Header: {
     backgroundColor: '#313134',
@@ -36,8 +39,11 @@ const theme: Theme = {
       backgroundColor: '#5E5E60',
     },
   },
+  ListItemSubtitle: {
+    style: { color: '#FFFFFF' },
+  },
   Divider: {
-    style: { marginTop: 5, marginBottom: 15, backgroundColor: '#5E5E60' },
+    style: { marginTop: 5, marginBottom: 5, backgroundColor: '#5E5E60' },
   },
 }
 

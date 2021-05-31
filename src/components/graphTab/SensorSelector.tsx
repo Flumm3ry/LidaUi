@@ -26,9 +26,16 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
       }}
     >
       <View style={{ backgroundColor: theme.colors?.grey1, alignSelf: 'flex-end', width: '100%' }}>
-        <Text>Click to Load Data</Text>
+        <Text style={{ textAlign: 'center' }}>Click to Load Data</Text>
         <Divider />
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            margin: 15,
+          }}
+        >
           {buttons.map((b) => (
             <Button key={b} title={b} onPress={() => onSelected(b)} />
           ))}

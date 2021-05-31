@@ -21,7 +21,20 @@ export default function GraphTab() {
       }}
     >
       <Graph />
-      <Button title="Download to CSV" />
+      <View
+        style={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          flexDirection: 'row',
+          width: '100%',
+          marginTop: 30,
+        }}
+      >
+        <Button title="Day" />
+        <Button title="Week" />
+        <Button title="Month" />
+      </View>
+      <Button title="Download to CSV" containerStyle={{ marginTop: 30 }} />
       <SensorSelector onSelected={() => undefined} />
     </View>
   )

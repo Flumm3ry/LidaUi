@@ -26,6 +26,8 @@ export default function SystemLogTab() {
           flexDirection: 'row',
           justifyContent: 'space-evenly',
           width: '100%',
+          marginTop: 50,
+          marginBottom: 20,
         }}
       >
         <Button title="Motor" />
