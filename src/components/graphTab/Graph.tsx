@@ -1,14 +1,24 @@
 import React from 'react'
+import { View } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
-import { Text } from 'react-native-elements'
+import { Text, useTheme } from 'react-native-elements'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
 
 export default function Graph() {
   const { contentWidth } = useGlobalStyles()
 
+  const { theme } = useTheme()
+
   return (
-    <>
-      <Text>Temperature Graph</Text>
+    <View
+      style={{ backgroundColor: theme.colors?.grey1, padding: 30, borderRadius: 20, marginTop: 30 }}
+    >
+      <Text h2 style={{ textAlign: 'center' }}>
+        Temperature Graph
+      </Text>
+      <Text h3 style={{ textAlign: 'center', paddingBottom: 10 }}>
+        07/04/21 - 15/04/21
+      </Text>
       <LineChart
         data={{
           labels: [
@@ -69,15 +79,12 @@ export default function Graph() {
           ],
         }}
         chartConfig={{
-          backgroundColor: '#545456',
-          backgroundGradientFrom: '#545456',
-          backgroundGradientTo: '#545456',
+          backgroundColor: theme.colors?.grey1,
+          backgroundGradientFrom: theme.colors?.grey1,
+          backgroundGradientTo: theme.colors?.grey1,
           decimalPlaces: 2, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          style: {
-            borderRadius: 16,
-          },
           propsForDots: {
             r: '6',
             strokeWidth: '2',
@@ -87,6 +94,6 @@ export default function Graph() {
         width={contentWidth}
         height={220}
       />
-    </>
+    </View>
   )
 }

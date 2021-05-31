@@ -34,7 +34,7 @@ export default function GraphTab() {
         <Button title="Week" />
         <Button title="Month" />
       </View>
-      <Button title="Download to CSV" containerStyle={{ marginTop: 30 }} />
+      <Button title="Download to CSV" containerStyle={{ margin: 30 }} />
       <SensorSelector onSelected={() => undefined} />
     </View>
   )
