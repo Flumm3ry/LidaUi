@@ -11,6 +11,8 @@ const theme: Theme = {
   colors: {
     primary: '#004BA6',
     black: '#000000',
+    grey0: '#5E5E60',
+    grey1: '#313134',
   },
   ButtonGroup: {
     containerStyle: { borderRadius: 15 },

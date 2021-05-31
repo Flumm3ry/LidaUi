@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { Button, useTheme } from 'react-native-elements'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
 import Graph from './Graph'
+import SensorSelector from './SensorSelector'
 
 export default function GraphTab() {
   const { horizontalPadding } = useGlobalStyles()
@@ -21,6 +22,7 @@ export default function GraphTab() {
     >
       <Graph />
       <Button title="Download to CSV" />
+      <SensorSelector onSelected={() => undefined} />
     </View>
   )
 }
