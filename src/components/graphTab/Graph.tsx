@@ -11,10 +11,53 @@ export default function Graph() {
       <Text>Temperature Graph</Text>
       <LineChart
         data={{
-          labels: ['1pm', '2pm', '3pm', '4pm', '5pm', '6pm'],
+          labels: [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            '10',
+            '11',
+            '12',
+            '13',
+            '14',
+            '15',
+            '16',
+            '17',
+            '18',
+            '19',
+            '20',
+            '21',
+            '22',
+            '23',
+            '00',
+          ],
           datasets: [
             {
               data: [
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
@@ -26,9 +69,9 @@ export default function Graph() {
           ],
         }}
         chartConfig={{
-          backgroundColor: '#e26a00',
-          backgroundGradientFrom: '#fb8c00',
-          backgroundGradientTo: '#ffa726',
+          backgroundColor: '#545456',
+          backgroundGradientFrom: '#545456',
+          backgroundGradientTo: '#545456',
           decimalPlaces: 2, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -38,7 +81,7 @@ export default function Graph() {
           propsForDots: {
             r: '6',
             strokeWidth: '2',
-            stroke: '#ffa726',
+            stroke: '#1daebf',
           },
         }}
         width={contentWidth}

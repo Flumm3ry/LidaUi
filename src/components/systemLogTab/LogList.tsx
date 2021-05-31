@@ -5,13 +5,13 @@ import { Divider, ListItem, Text, useTheme } from 'react-native-elements'
 export default function LogList() {
   const logList = [
     'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 15',
+    'Motor 2, 10:00am Thur, April 15',
+    'Motor 1, 10:00am Thur, April 16',
+    'Motor 2, 10:00am Thur, April 16',
+    'Motor 1, 10:00am Thur, April 17',
+    'Motor 2, 10:00am Thur, April 17',
+    'Motor 1, 10:00am Thur, April 18',
+    'Motor 2, 10:00am Thur, April 18',
   ]
 
   const { theme } = useTheme()
