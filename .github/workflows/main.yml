@@ -1,0 +1,22 @@
+name: Expo Publish
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop, uat, master ]
+jobs:
+  publish:
+    name: Install and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          expo-cache: true
+      - run: yarn install
+      - run: expo build:web
