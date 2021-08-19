@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import React from 'react'
-import { View, Image } from 'react-native'
+import { Image } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider, Header, Theme } from 'react-native-elements'
 import TabNavigator from './src/components/navigation/TabNavigator'
@@ -49,15 +49,13 @@ const theme: Theme = {
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <SafeAreaProvider>
+        <Header centerComponent={<Image source={Logo} style={{ width: 170, height: 66 }} />} />
         <NavigationContainer>
-          <View>
-            <Header centerComponent={<Image source={Logo} style={{ width: 170, height: 66 }} />} />
-            <TabNavigator />
-          </View>
+          <TabNavigator />
         </NavigationContainer>
-      </ThemeProvider>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </ThemeProvider>
   )
 }

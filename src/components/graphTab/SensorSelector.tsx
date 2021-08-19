@@ -17,7 +17,6 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
   return (
     <View
       style={{
-        width: `calc(100% + ${horizontalPadding * 2}px)`,
         marginHorizontal: -horizontalPadding,
         flexGrow: 1,
         display: 'flex',
