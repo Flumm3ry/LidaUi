@@ -4,7 +4,12 @@ import { LineChart } from 'react-native-chart-kit'
 import { Text, useTheme } from 'react-native-elements'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
 
-export default function Graph() {
+interface GraphProps {
+  graphPoints: { label: string; value: number }[]
+  sensorName: string
+}
+
+export default function Graph({ graphPoints, sensorName }: GraphProps) {
   const { contentWidth } = useGlobalStyles()
 
   const { theme } = useTheme()
@@ -14,67 +19,17 @@ export default function Graph() {
       style={{ backgroundColor: theme.colors?.grey1, padding: 30, borderRadius: 20, marginTop: 30 }}
     >
       <Text h2 style={{ textAlign: 'center' }}>
-        Temperature Graph
+        {sensorName} Graph
       </Text>
       <Text h3 style={{ textAlign: 'center', paddingBottom: 10 }}>
         07/04/21 - 15/04/21
       </Text>
       <LineChart
         data={{
-          labels: [
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            '10',
-            '11',
-            '12',
-            '13',
-            '14',
-            '15',
-            '16',
-            '17',
-            '18',
-            '19',
-            '20',
-            '21',
-            '22',
-            '23',
-            '00',
-          ],
+          labels: graphPoints.map((p) => p.label),
           datasets: [
             {
-              data: [
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-              ],
+              data: graphPoints.map((p) => p.value),
             },
           ],
         }}

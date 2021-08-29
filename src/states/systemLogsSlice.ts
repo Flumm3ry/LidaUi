@@ -20,7 +20,7 @@ const initialState: SystemLogsState = {
 }
 
 export const fetchLogs = createAsyncThunk('systemLogs/fetchLogs', async () => {
-  const response = await MyApi.readSensorData(moment().unix(), moment().subtract(5, 'days').unix())
+  const response = await MyApi.readSensorData(moment().subtract(1, 'week').unix(), moment().unix())
 
   const result: { motorLogs: SystemLogDTO[]; sensorLogs: SystemLogDTO[] } = {
     motorLogs: [],
