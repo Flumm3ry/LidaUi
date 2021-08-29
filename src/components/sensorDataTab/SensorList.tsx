@@ -1,8 +1,18 @@
 import React from 'react'
 import { Avatar, Divider, ListItem, Text, useTheme } from 'react-native-elements'
 import { StyleProp, View, ViewStyle } from 'react-native'
+import { GetSensorDataQueryDto } from '../../data/api/models'
+import moment from 'moment'
 
-export default function SensorList() {
+interface SensorListProps {
+  sensorData: GetSensorDataQueryDto[]
+  lastPolled: Date | undefined
+}
+
+export default function SensorList({ sensorData, lastPolled }: SensorListProps) {
+  const getValueFromList = (sensorName: 'temp' | 'oxygen' | 'methane' | 'moisture' | 'co2') =>
+    sensorData?.filter((s) => s.sensorName === sensorName).find(() => true)?.value || '--'
+
   const list: {
     title: string
     subTitle?: string
@@ -14,35 +24,35 @@ export default function SensorList() {
       title: 'Temperature',
       subTitle: 'Thermophilic',
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: '43\u00b0C',
+      value: `${getValueFromList('temp')}43\u00b0C`,
       colour: 'success',
     },
     {
       title: 'Oxygen Level',
       subTitle: '',
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: '70%',
+      value: `${getValueFromList('oxygen')}%`,
       colour: 'success',
     },
     {
       title: 'Methane Level',
-      subTitle: '70ppm',
+      subTitle: `${getValueFromList('methane')}ppm`,
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: '0.007%',
+      value: `${getValueFromList('methane')}%`,
       colour: 'warning',
     },
     {
       title: 'Moisture Data',
-      subTitle: 'High Saturation (Wet)',
+      subTitle: 'TODO: High Saturation (Wet)',
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: '86.67%',
+      value: `${getValueFromList('moisture')}%`,
       colour: 'success',
     },
     {
       title: 'Carbon Dioxide',
-      subTitle: '450ppm',
+      subTitle: `${getValueFromList('co2')}ppm`,
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: '0.045%',
+      value: `${getValueFromList('co2')}%`,
       colour: 'error',
     },
   ]
@@ -60,7 +70,7 @@ export default function SensorList() {
     <View style={{ width: '100%' }}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text>Sensor Data</Text>
-        <Text>Last Polled 4:00PM</Text>
+        {lastPolled && <Text>Last Polled {moment(lastPolled).fromNow()}</Text>}
       </View>
       <Divider />
       {list.map((l) => (

@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import moment from 'moment'
+import { MyApi } from '../data/myApi'
 
 export interface SystemLogDTO {
   name: string
@@ -18,30 +20,24 @@ const initialState: SystemLogsState = {
 }
 
 export const fetchLogs = createAsyncThunk('systemLogs/fetchLogs', async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  const response = await MyApi.readSensorData(moment().unix(), moment().subtract(5, 'days').unix())
 
-  return {
-    motorLogs: [
-      { name: 'Motor 1', dateTime: '10:00am Thur, April 15' },
-      { name: 'Motor 2', dateTime: '10:00am Thur, April 15' },
-      { name: 'Motor 1', dateTime: '10:00am Thur, April 16' },
-      { name: 'Motor 2', dateTime: '10:00am Thur, April 16' },
-      { name: 'Motor 1', dateTime: '10:00am Thur, April 17' },
-      { name: 'Motor 2', dateTime: '10:00am Thur, April 17' },
-      { name: 'Motor 1', dateTime: '10:00am Thur, April 18' },
-      { name: 'Motor 2', dateTime: '10:00am Thur, April 18' },
-    ],
-    sensorLogs: [
-      { name: 'Sensor 1', dateTime: '10:00am Thur, April 15' },
-      { name: 'Sensor 2', dateTime: '10:00am Thur, April 15' },
-      { name: 'Sensor 1', dateTime: '10:00am Thur, April 16' },
-      { name: 'Sensor 2', dateTime: '10:00am Thur, April 16' },
-      { name: 'Sensor 1', dateTime: '10:00am Thur, April 17' },
-      { name: 'Sensor 2', dateTime: '10:00am Thur, April 17' },
-      { name: 'Sensor 1', dateTime: '10:00am Thur, April 18' },
-      { name: 'Sensor 2', dateTime: '10:00am Thur, April 18' },
-    ],
+  const result: { motorLogs: SystemLogDTO[]; sensorLogs: SystemLogDTO[] } = {
+    motorLogs: [],
+    sensorLogs: [],
   }
+
+  response.data.forEach((d) => {
+    const labelData: SystemLogDTO = {
+      name: d.sensorName,
+      dateTime: moment(d.timeStamp).format('MMM Do'),
+    }
+
+    if ((d.sensorName as string).toLowerCase().includes('motor')) result.motorLogs.push(labelData)
+    else result.sensorLogs.push(labelData)
+  })
+
+  return result
 })
 
 const systemLogsSlice = createSlice({
@@ -51,7 +47,7 @@ const systemLogsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchLogs.pending, (state) => {
-        state.state = 'loading'
+        state.state = state.motorLogs.length || state.sensorLogs.length ? 'refreshing' : 'loading'
       })
       .addCase(fetchLogs.rejected, (state) => {
         state.state = 'errored'

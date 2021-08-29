@@ -1,43 +1,26 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import moment from 'moment'
+import { GetSensorDataQueryDto } from '../data/api/models'
 import { MyApi } from '../data/myApi'
 
-export interface SystemLogDTO {
-  name: string
-  dateTime: string
-}
-
 interface SystemLogsState {
-  motorLogs: SystemLogDTO[]
-  sensorLogs: SystemLogDTO[]
+  sensorData: GetSensorDataQueryDto[]
   state: 'idle' | 'loading' | 'fulfilled' | 'errored' | 'refreshing'
+  lastPolled?: Date
 }
 
 const initialState: SystemLogsState = {
-  motorLogs: [],
-  sensorLogs: [],
+  sensorData: [],
   state: 'idle',
 }
 
 export const fetchSensorData = createAsyncThunk('sensorData/fetchSensorData', async () => {
-  const response = await MyApi.readSystemLog(moment().unix(), moment().subtract(2, 'days').unix())
+  const response = await MyApi.readSensorData(
+    moment().unix(),
+    moment().subtract(1, 'months').unix()
+  )
 
-  const result: { motorLogs: SystemLogDTO[]; sensorLogs: SystemLogDTO[] } = {
-    motorLogs: [],
-    sensorLogs: [],
-  }
-
-  response.data.forEach((d) => {
-    const labelData: SystemLogDTO = {
-      name: d.sensorName,
-      dateTime: moment(d.timeStamp).format('MMM Do'),
-    }
-
-    if ((d.sensorName as string).toLowerCase().includes('motor')) result.motorLogs.push(labelData)
-    else result.sensorLogs.push(labelData)
-  })
-
-  return result
+  return response.data
 })
 
 const sensorDataSlice = createSlice({
@@ -47,15 +30,15 @@ const sensorDataSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchSensorData.pending, (state) => {
-        state.state = 'loading'
+        state.state = state.sensorData.length ? 'refreshing' : 'loading'
+        state.lastPolled = moment().toDate()
       })
       .addCase(fetchSensorData.rejected, (state) => {
         state.state = 'errored'
       })
       .addCase(fetchSensorData.fulfilled, (state, { payload }) => {
         state.state = 'fulfilled'
-        state.motorLogs = payload.motorLogs
-        state.sensorLogs = payload.sensorLogs
+        state.sensorData = payload
       }),
 })
 

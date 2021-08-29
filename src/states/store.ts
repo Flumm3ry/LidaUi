@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import systemLogsReducer from './systemLogsSlice'
+import sensorDataReducer from './sensorDataSlice'
 
 export const store = configureStore({
   reducer: {
     systemLogs: systemLogsReducer,
+    sensorData: sensorDataReducer,
   },
 })
 
