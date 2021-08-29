@@ -31,12 +31,12 @@ const sensorDataSlice = createSlice({
     builder
       .addCase(fetchSensorData.pending, (state) => {
         state.state = state.sensorData.length ? 'refreshing' : 'loading'
-        state.lastPolled = moment().toDate()
       })
       .addCase(fetchSensorData.rejected, (state) => {
         state.state = 'errored'
       })
       .addCase(fetchSensorData.fulfilled, (state, { payload }) => {
+        state.lastPolled = moment().toDate()
         state.state = 'fulfilled'
         state.sensorData = payload
       }),

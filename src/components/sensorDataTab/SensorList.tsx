@@ -3,6 +3,7 @@ import { Avatar, Divider, ListItem, Text, useTheme } from 'react-native-elements
 import { StyleProp, View, ViewStyle } from 'react-native'
 import { GetSensorDataQueryDto } from '../../data/api/models'
 import moment from 'moment'
+import sensorNames from '../../constants/sensorNames'
 
 interface SensorListProps {
   sensorData: GetSensorDataQueryDto[]
@@ -10,7 +11,7 @@ interface SensorListProps {
 }
 
 export default function SensorList({ sensorData, lastPolled }: SensorListProps) {
-  const getValueFromList = (sensorName: 'temp' | 'oxygen' | 'methane' | 'moisture' | 'co2') =>
+  const getValueFromList = (sensorName: string) =>
     sensorData?.filter((s) => s.sensorName === sensorName).find(() => true)?.value || '--'
 
   const list: {
@@ -24,35 +25,35 @@ export default function SensorList({ sensorData, lastPolled }: SensorListProps) 
       title: 'Temperature',
       subTitle: 'Thermophilic',
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: `${getValueFromList('temp')}43\u00b0C`,
+      value: `${getValueFromList(sensorNames.temperature)}\u00b0C`,
       colour: 'success',
     },
     {
       title: 'Oxygen Level',
       subTitle: '',
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: `${getValueFromList('oxygen')}%`,
+      value: `${getValueFromList(sensorNames.oxygen)}%`,
       colour: 'success',
     },
     {
       title: 'Methane Level',
-      subTitle: `${getValueFromList('methane')}ppm`,
+      subTitle: `${getValueFromList(sensorNames.methane)}ppm`,
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: `${getValueFromList('methane')}%`,
+      value: `${getValueFromList(sensorNames.methane)}%`,
       colour: 'warning',
     },
     {
       title: 'Moisture Data',
       subTitle: 'TODO: High Saturation (Wet)',
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: `${getValueFromList('moisture')}%`,
+      value: `${getValueFromList(sensorNames.moisture)}%`,
       colour: 'success',
     },
     {
       title: 'Carbon Dioxide',
-      subTitle: `${getValueFromList('co2')}ppm`,
+      subTitle: `${getValueFromList(sensorNames.carbon)}ppm`,
       icon: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-      value: `${getValueFromList('co2')}%`,
+      value: `${getValueFromList(sensorNames.carbon)}%`,
       colour: 'error',
     },
   ]
