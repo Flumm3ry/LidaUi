@@ -4,6 +4,7 @@
     "slug": "lidaui",
     "version": "1.0.0",
     "sdkVersion": "41.0.0",
-    "platforms": ["ios", "android", "web"]
+    "platforms": ["ios", "android", "web"],
+    "description": ""
   }
 }
