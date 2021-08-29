@@ -22,7 +22,7 @@ export default function LogList({ sensorLogs, motorLogs, selection }: LogListPro
 
   return (
     <View style={{ width: '100%' }}>
-      <Text>Log Times of {selection === 'M' ? 'Motor Turns' : 'Sensor Triggers'} Turn</Text>
+      <Text>Log Times of {selection === 'M' ? 'Motor Turns' : 'Sensor Triggers'}</Text>
       <Divider />
       {currentLogs.map((l, i) => (
         <ListItem key={`${l.name}-${l.dateTime}`} containerStyle={listItemStyle(i)}>
