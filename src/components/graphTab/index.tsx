@@ -8,6 +8,7 @@ import { useAppSelector } from '../../states/reduxHooks'
 import { sensorDataSelector } from '../../states/selectors'
 import Graph from './Graph'
 import SensorSelector from './SensorSelector'
+import _ from 'lodash'
 
 export default function GraphTab() {
   const { horizontalPadding } = useGlobalStyles()
