@@ -53,7 +53,7 @@ export default function GraphTab() {
         backgroundColor: theme.colors?.black,
       }}
     >
-      <Graph graphPoints={graphPoints} sensorName={sensor} />
+      <Graph graphPoints={graphPoints} sensorName={sensor} timespan={timespan} />
       <View
         style={{
           display: 'flex',

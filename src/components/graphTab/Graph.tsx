@@ -7,9 +7,10 @@ import useGlobalStyles from '../../hooks/useGlobalStyles'
 interface GraphProps {
   graphPoints: { label: string; value: number }[]
   sensorName: string
+  timespan: string
 }
 
-export default function Graph({ graphPoints, sensorName }: GraphProps) {
+export default function Graph({ graphPoints, sensorName, timespan }: GraphProps) {
   const { contentWidth } = useGlobalStyles()
 
   const { theme } = useTheme()
@@ -22,7 +23,7 @@ export default function Graph({ graphPoints, sensorName }: GraphProps) {
         {sensorName} Graph
       </Text>
       <Text h3 style={{ textAlign: 'center', paddingBottom: 10 }}>
-        07/04/21 - 15/04/21
+        Data from the last {timespan}
       </Text>
       <LineChart
         data={{
