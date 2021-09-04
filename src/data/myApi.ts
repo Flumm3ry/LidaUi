@@ -13,5 +13,5 @@ axios.interceptors.response.use(
 
 export const MyApi = DefaultApiFactory(
   undefined,
-  'https://australia-southeast1-lida-api-313611.cloudfunctions.net/rest-api/'
+  'https://australia-southeast1-lida-api-313611.cloudfunctions.net/rest-api'
 )

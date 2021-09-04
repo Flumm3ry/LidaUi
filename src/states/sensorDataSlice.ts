@@ -6,7 +6,7 @@ import { MyApi } from '../data/myApi'
 interface SystemLogsState {
   sensorData: GetSensorDataQueryDto[]
   state: 'idle' | 'loading' | 'fulfilled' | 'errored' | 'refreshing'
-  lastPolled?: Date
+  lastPolled?: number
 }
 
 const initialState: SystemLogsState = {
@@ -36,7 +36,7 @@ const sensorDataSlice = createSlice({
         state.state = 'errored'
       })
       .addCase(fetchSensorData.fulfilled, (state, { payload }) => {
-        state.lastPolled = moment().toDate()
+        state.lastPolled = moment().unix()
         state.state = 'fulfilled'
         state.sensorData = payload || []
       }),

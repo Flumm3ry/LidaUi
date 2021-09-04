@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import { View } from 'react-native'
 import { useTheme } from 'react-native-elements'
@@ -30,7 +31,7 @@ export default function SensorDataTab() {
       }}
     >
       <SystemStatus />
-      <SensorList sensorData={mostRecentSensorData} lastPolled={lastPolled} />
+      <SensorList sensorData={mostRecentSensorData} lastPolled={moment(lastPolled).toDate()} />
     </View>
   )
 }
