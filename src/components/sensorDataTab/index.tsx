@@ -2,6 +2,7 @@ import moment from 'moment'
 import React from 'react'
 import { View } from 'react-native'
 import { useTheme } from 'react-native-elements'
+import sensorNames from '../../constants/sensorNames'
 import { GetSensorDataQueryDto } from '../../data/api/models'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
 import { useAppSelector } from '../../states/reduxHooks'
@@ -14,8 +15,20 @@ export default function SensorDataTab() {
   const { theme } = useTheme()
   const { sensorData, lastPolled } = useAppSelector(sensorDataSelector)
 
+  const getMostRecentByName = (name: string) =>
+    [...sensorData]
+      .filter((sd) => sd.sensorName === name)
+      .sort((sd) => sd.timeStamp)
+      .find(() => 1)
+
   const mostRecentSensorData: GetSensorDataQueryDto[] = React.useMemo(
-    () => [...sensorData].sort((s) => s.timeStamp).slice(0, 5),
+    () =>
+      [
+        getMostRecentByName(sensorNames.carbon),
+        getMostRecentByName(sensorNames.methane),
+        getMostRecentByName(sensorNames.oxygen),
+        getMostRecentByName(sensorNames.temperature),
+      ].filter((sd) => sd) as GetSensorDataQueryDto[],
     [sensorData]
   )
 
