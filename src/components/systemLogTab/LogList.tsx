@@ -1,19 +1,15 @@
 import React from 'react'
 import { View, StyleProp, ViewStyle } from 'react-native'
 import { Divider, ListItem, Text, useTheme } from 'react-native-elements'
+import { SystemLogDTO } from '../../states/systemLogsSlice'
 
-export default function LogList() {
-  const logList = [
-    'Motor 1, 10:00am Thur, April 15',
-    'Motor 2, 10:00am Thur, April 15',
-    'Motor 1, 10:00am Thur, April 16',
-    'Motor 2, 10:00am Thur, April 16',
-    'Motor 1, 10:00am Thur, April 17',
-    'Motor 2, 10:00am Thur, April 17',
-    'Motor 1, 10:00am Thur, April 18',
-    'Motor 2, 10:00am Thur, April 18',
-  ]
+interface LogListProps {
+  sensorLogs: SystemLogDTO[]
+  motorLogs: SystemLogDTO[]
+  selection: 'S' | 'M'
+}
 
+export default function LogList({ sensorLogs, motorLogs, selection }: LogListProps) {
   const { theme } = useTheme()
 
   const listItemStyle = (index: number): StyleProp<ViewStyle> => ({
@@ -22,14 +18,16 @@ export default function LogList() {
     borderWidth: 2,
   })
 
+  const currentLogs = selection === 'M' ? motorLogs : sensorLogs
+
   return (
     <View style={{ width: '100%' }}>
-      <Text>Log Times of Motor Turn</Text>
+      <Text>Log Times of {selection === 'M' ? 'Motor Turns' : 'Sensor Triggers'}</Text>
       <Divider />
-      {logList.map((l, i) => (
-        <ListItem key={l} containerStyle={listItemStyle(i)}>
+      {currentLogs.map((l, i) => (
+        <ListItem key={`${l.name}-${l.dateTime}`} containerStyle={listItemStyle(i)}>
           <ListItem.Content>
-            <ListItem.Title>Motor 1, 10:00am Thur, April 15</ListItem.Title>
+            <ListItem.Title>{`${l.name}, ${l.dateTime}`}</ListItem.Title>
           </ListItem.Content>
         </ListItem>
       ))}
