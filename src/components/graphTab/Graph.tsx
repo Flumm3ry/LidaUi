@@ -25,7 +25,7 @@ export default function Graph({ graphPoints, sensorName, timespan }: GraphProps)
       <Text h3 style={{ textAlign: 'center', paddingBottom: 10 }}>
         Data from the last {timespan}
       </Text>
-      <LineChart
+      {/* <LineChart
         data={{
           labels: graphPoints.map((p) => p.label),
           datasets: [
@@ -49,7 +49,7 @@ export default function Graph({ graphPoints, sensorName, timespan }: GraphProps)
         }}
         width={contentWidth}
         height={220}
-      />
+      /> */}
     </View>
   )
 }
