@@ -1,13 +1,29 @@
 import React from 'react'
 import { Avatar, Divider, ListItem, Text, useTheme } from 'react-native-elements'
-import { StyleProp, View, ViewStyle } from 'react-native'
-import tempIcon from '../../../assets/resources/Celciuslog.png'
-import oxygenIcon from '../../../assets/resources/oxygen2x.png'
-import methaneIcon from '../../../assets/resources/methane2x.png'
-import moistureIcon from '../../../assets/resources/moisture2x.png'
-import carbonIcon from '../../../assets/resources/carbon2x.png'
+import { StyleProp, View, ViewStyle, Image, StyleSheet, PixelRatio } from 'react-native'
+
+import Logo from '../../../assets/LidaLogo.png'
+import tempIcon from '../../../assets/resources/CelciusRounded.png'
+import oxygenIcon from '../../../assets/resources/OxygenRounded.png'
+import methaneIcon from '../../../assets/resources/MethaneRounded.png'
+import moistureIcon from '../../../assets/resources/MoistureRounded.png'
+import carbonIcon from '../../../assets/resources/CarbonRounded.png'
 
 export default function SensorList() {
+  const styles = StyleSheet.create({
+    container1: {},
+    tinyLogo: {
+      resizeMode: 'contain',
+      width: 100,
+      height: 100,
+    },
+    titleText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      paddingBottom: 10,
+    },
+  })
+
   const list: {
     title: string
     subTitle?: string
@@ -70,9 +86,12 @@ export default function SensorList() {
       <Divider />
       {list.map((l) => (
         <ListItem key={l.title} containerStyle={listItemStyle(l.colour)}>
-          <Avatar imageProps={{ resizeMode: 'contain' }} size={80} source={{ uri: l.icon }} />
+          <View style={styles.container1}>
+            <Image style={styles.tinyLogo} source={Logo} />
+          </View>
+          {/* <Avatar imageProps={{ style: styles.tinyLogo }} size={80} source={{ uri: l.icon }} />  */}
           <ListItem.Content>
-            <ListItem.Title>{l.title}</ListItem.Title>
+            <ListItem.Title style={styles.titleText}>{l.title}</ListItem.Title>
             <ListItem.Subtitle>{l.subTitle}</ListItem.Subtitle>
           </ListItem.Content>
           <Text h4>{l.value}</Text>
