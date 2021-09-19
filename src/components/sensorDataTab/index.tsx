@@ -19,6 +19,7 @@ export default function SensorDataTab() {
     [...sensorData]
       .filter((sd) => sd.sensorName === name)
       .sort((sd) => sd.timeStamp)
+      .reverse()
       .find(() => 1)
 
   const mostRecentSensorData: GetSensorDataQueryDto[] = React.useMemo(
@@ -28,6 +29,7 @@ export default function SensorDataTab() {
         getMostRecentByName(sensorNames.methane),
         getMostRecentByName(sensorNames.oxygen),
         getMostRecentByName(sensorNames.temperature),
+        getMostRecentByName(sensorNames.moisture),
       ].filter((sd) => sd) as GetSensorDataQueryDto[],
     [sensorData]
   )
@@ -36,10 +38,10 @@ export default function SensorDataTab() {
     <View
       style={{
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         paddingLeft: horizontalPadding,
         paddingRight: horizontalPadding,
+        paddingTop: 20,
         backgroundColor: theme.colors?.black,
       }}
     >

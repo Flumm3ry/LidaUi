@@ -16,7 +16,7 @@ export default function SystemStatus() {
   const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
-    MyApi.createSystemLog({})
+    MyApi.createSystemLog()
       .then((r) => setOnline(r.data.isRunning))
       .finally(() => setIsLoading(false))
   }, [])

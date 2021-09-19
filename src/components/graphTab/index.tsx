@@ -29,8 +29,8 @@ export default function GraphTab() {
   }
 
   const graphPoints = React.useMemo(() => {
-    const startDate = moment().subtract(1, timespan).unix()
-    const endDate = moment().unix()
+    const startDate = moment().subtract(1, timespan).valueOf()
+    const endDate = moment().valueOf()
 
     const labelFormat = getLabelFormat()
 

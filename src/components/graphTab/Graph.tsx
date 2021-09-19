@@ -25,31 +25,35 @@ export default function Graph({ graphPoints, sensorName, timespan }: GraphProps)
       <Text h3 style={{ textAlign: 'center', paddingBottom: 10 }}>
         Data from the last {timespan}
       </Text>
-      {/* <LineChart
-        data={{
-          labels: graphPoints.map((p) => p.label),
-          datasets: [
-            {
-              data: graphPoints.map((p) => p.value),
+      {graphPoints.length ? (
+        <LineChart
+          data={{
+            labels: graphPoints.map((p) => p.label),
+            datasets: [
+              {
+                data: graphPoints.map((p) => p.value),
+              },
+            ],
+          }}
+          chartConfig={{
+            backgroundColor: theme.colors?.grey1,
+            backgroundGradientFrom: theme.colors?.grey1,
+            backgroundGradientTo: theme.colors?.grey1,
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            propsForDots: {
+              r: '6',
+              strokeWidth: '2',
+              stroke: '#1daebf',
             },
-          ],
-        }}
-        chartConfig={{
-          backgroundColor: theme.colors?.grey1,
-          backgroundGradientFrom: theme.colors?.grey1,
-          backgroundGradientTo: theme.colors?.grey1,
-          decimalPlaces: 2, // optional, defaults to 2dp
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          propsForDots: {
-            r: '6',
-            strokeWidth: '2',
-            stroke: '#1daebf',
-          },
-        }}
-        width={contentWidth}
-        height={220}
-      /> */}
+          }}
+          width={contentWidth}
+          height={220}
+        />
+      ) : (
+        <Text>No points to show</Text>
+      )}
     </View>
   )
 }

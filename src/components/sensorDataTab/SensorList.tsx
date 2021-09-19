@@ -5,12 +5,6 @@ import { GetSensorDataQueryDto } from '../../data/api/models'
 import moment from 'moment'
 import sensorNames from '../../constants/sensorNames'
 
-// import CarbonIcon from '../../../assets/resources/CarbonRounded.png'
-// import CelciusIcon from '../../../assets/resources/CelciusRounded.png'
-// import MethaneIcon from '../../../assets/resources/MethaneRounded.png'
-// import MoistureIcon from '../../../assets/resources/MoistureRounded.png'
-// import OxygenIcon from '../../../assets/resources/OxygenRounded.png'
-
 const Icons = {
   images: [
     require('../../../assets/resources/CarbonRounded.png'),

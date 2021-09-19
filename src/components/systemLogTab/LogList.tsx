@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import { View, StyleProp, ViewStyle } from 'react-native'
 import { Divider, ListItem, Text, useTheme } from 'react-native-elements'
@@ -25,9 +26,11 @@ export default function LogList({ sensorLogs, motorLogs, selection }: LogListPro
       <Text>Log Times of {selection === 'M' ? 'Motor Turns' : 'Sensor Triggers'}</Text>
       <Divider />
       {currentLogs.map((l, i) => (
-        <ListItem key={`${l.name}-${l.dateTime}`} containerStyle={listItemStyle(i)}>
+        <ListItem key={`${l.name}-${l.timestamp}`} containerStyle={listItemStyle(i)}>
           <ListItem.Content>
-            <ListItem.Title>{`${l.name}, ${l.dateTime}`}</ListItem.Title>
+            <ListItem.Title>{`${l.name}, ${moment(l.timestamp).format(
+              'MMM Do HH:mm:ss'
+            )}`}</ListItem.Title>
           </ListItem.Content>
         </ListItem>
       ))}
