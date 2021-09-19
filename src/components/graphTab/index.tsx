@@ -40,7 +40,7 @@ export default function GraphTab() {
         label: moment(s.timeStamp).format(labelFormat),
         value: s.value,
       }))
-  }, [sensor, timespan])
+  }, [sensor, timespan, sensorData])
 
   return (
     <View
