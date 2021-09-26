@@ -20,7 +20,6 @@ export default function SystemStatus() {
       body: JSON.stringify({ sensorName: 'domsmistake', value: 1 }),
       headers: {
         'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     })
       .then((r) => setOnline(r.isRunning))
