@@ -1,7 +1,7 @@
 $jarFileName = "swagger-codegen-cli.jar"
 $swaggerUrl = "swagger.json"
 $outputDirectory = "swaggerOutput"
-$ouputLanguage = "typescript-axios"
+$ouputLanguage = "typescript-fetch"
 $version = "3.0.25" # This powershell has only been tested with 3.x versions
 
 Write-Host "Starting process..."

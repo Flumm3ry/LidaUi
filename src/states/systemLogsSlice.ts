@@ -4,7 +4,7 @@ import { MyApi } from '../data/myApi'
 
 export interface SystemLogDTO {
   name: string
-  dateTime: string
+  timestamp: number
 }
 
 interface SystemLogsState {
@@ -20,17 +20,20 @@ const initialState: SystemLogsState = {
 }
 
 export const fetchLogs = createAsyncThunk('systemLogs/fetchLogs', async () => {
-  const response = await MyApi.readSensorData(moment().subtract(1, 'week').unix(), moment().unix())
+  const response = await MyApi.readSystemLog(
+    moment().subtract(1, 'week').valueOf(),
+    moment().valueOf()
+  )
 
   const result: { motorLogs: SystemLogDTO[]; sensorLogs: SystemLogDTO[] } = {
     motorLogs: [],
     sensorLogs: [],
   }
 
-  response.data.forEach((d) => {
+  response.forEach((d) => {
     const labelData: SystemLogDTO = {
       name: d.sensorName,
-      dateTime: moment(d.timeStamp).format('MMM Do'),
+      timestamp: d.timeStamp,
     }
 
     if ((d.sensorName as string).toLowerCase().includes('motor')) result.motorLogs.push(labelData)

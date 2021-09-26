@@ -16,14 +16,19 @@ export default function SystemStatus() {
   const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
-    MyApi.createSystemLog({})
-      .then((r) => setOnline(r.data.isRunning))
+    MyApi.createSensorData({
+      body: JSON.stringify({ sensorName: 'domsmistake', value: 1 }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => setOnline(r.isRunning))
       .finally(() => setIsLoading(false))
   }, [])
 
   const handleButtonClick = () => {
     MyApi.updateState({ isRunning: !online })
-      .then((r) => setOnline(r.data.isRunning))
+      .then((r) => setOnline(r.isRunning))
       .catch()
   }
 
@@ -31,7 +36,7 @@ export default function SystemStatus() {
     <View style={container}>
       <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Text>System Status:</Text>
-        <Text>{online ? 'Online' : 'Offline'}</Text>
+        {online !== undefined && <Text>{online ? 'Online' : 'Offline'}</Text>}
       </View>
       <Button title="Toggle Status" disabled={isLoading} onPress={handleButtonClick} />
     </View>

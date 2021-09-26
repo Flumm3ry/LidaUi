@@ -1,7 +1,7 @@
 export default {
-  oxygen: 'oxygen',
-  temperature: 'temperature',
-  methane: 'methane',
-  carbon: 'carbon',
-  moisture: 'moisture',
+  oxygen: 'Oxygen',
+  temperature: 'Temperature',
+  methane: 'Methane',
+  carbon: 'Carbon Dioxide',
+  moisture: 'Moisture',
 }

@@ -29,18 +29,18 @@ export default function GraphTab() {
   }
 
   const graphPoints = React.useMemo(() => {
-    const startDate = moment().subtract(1, timespan).unix()
-    const endDate = moment().unix()
+    const startDate = moment().subtract(1, timespan).valueOf()
+    const endDate = moment().valueOf()
 
     const labelFormat = getLabelFormat()
 
     return sensorData
       .filter((s) => s.timeStamp >= startDate && s.timeStamp <= endDate && s.sensorName === sensor)
       .map((s) => ({
-        label: moment(s.timeStamp).format(labelFormat),
+        timestamp: s.timeStamp,
         value: s.value,
       }))
-  }, [sensor, timespan])
+  }, [sensor, timespan, sensorData])
 
   return (
     <View
