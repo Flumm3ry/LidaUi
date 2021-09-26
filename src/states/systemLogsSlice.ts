@@ -30,7 +30,7 @@ export const fetchLogs = createAsyncThunk('systemLogs/fetchLogs', async () => {
     sensorLogs: [],
   }
 
-  response.data.forEach((d) => {
+  response.forEach((d) => {
     const labelData: SystemLogDTO = {
       name: d.sensorName,
       timestamp: d.timeStamp,

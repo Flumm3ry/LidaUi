@@ -15,15 +15,15 @@ export default function SystemStatus() {
   const [online, setOnline] = React.useState<boolean | undefined>()
   const [isLoading, setIsLoading] = React.useState(true)
 
-  React.useEffect(() => {
-    MyApi.createSystemLog()
-      .then((r) => setOnline(r.data.isRunning))
-      .finally(() => setIsLoading(false))
-  }, [])
+  // React.useEffect(() => {
+  //   MyApi.createSensorData({sensorName: 'doms mistake', value: -1})
+  //     .then((r) => setOnline(r.data.isRunning))
+  //     .finally(() => setIsLoading(false))
+  // }, [])
 
   const handleButtonClick = () => {
     MyApi.updateState({ isRunning: !online })
-      .then((r) => setOnline(r.data.isRunning))
+      .then((r) => setOnline(r.isRunning))
       .catch()
   }
 

@@ -37,7 +37,7 @@ export default function GraphTab() {
     return sensorData
       .filter((s) => s.timeStamp >= startDate && s.timeStamp <= endDate && s.sensorName === sensor)
       .map((s) => ({
-        label: moment(s.timeStamp).format(labelFormat),
+        timestamp: s.timeStamp,
         value: s.value,
       }))
   }, [sensor, timespan, sensorData])
