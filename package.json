@@ -28,7 +28,9 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.4",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "expo-web-browser": "~9.1.0",
+    "expo-sharing": "~9.1.2"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

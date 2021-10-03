@@ -6,6 +6,7 @@ import sensorNames from '../../constants/sensorNames'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
 import { useAppSelector } from '../../states/reduxHooks'
 import { sensorDataSelector } from '../../states/selectors'
+import { ConvertObjectToCsv, downloadStringAsFile } from '../../utils/csvHelper'
 import Graph from './Graph'
 import SensorSelector from './SensorSelector'
 
@@ -42,6 +43,20 @@ export default function GraphTab() {
       }))
   }, [sensor, timespan, sensorData])
 
+  const downloadCsv = async () => {
+    const csvString: string = ConvertObjectToCsv(
+      graphPoints.map((gp) => ({
+        date: moment(gp.timestamp).format('MMM Do HH:mm:ss'),
+        value: gp.value,
+      }))
+    )
+
+    await downloadStringAsFile(
+      csvString,
+      `${sensor}_Data_For_${timespan}-${moment().valueOf()}.csv`
+    )
+  }
+
   return (
     <View
       style={{
@@ -67,7 +82,7 @@ export default function GraphTab() {
         <Button title="Week" onPress={() => setTimespan('week')} />
         <Button title="Month" onPress={() => setTimespan('month')} />
       </View>
-      <Button title="Download to CSV" containerStyle={{ margin: 30 }} />
+      <Button title="Download to CSV" containerStyle={{ margin: 30 }} onPress={downloadCsv} />
       <SensorSelector onSelected={(sensorName) => setSensor(sensorName)} />
     </View>
   )
