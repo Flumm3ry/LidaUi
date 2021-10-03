@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Divider, ListItem, Text, useTheme } from 'react-native-elements'
+import { Divider, ListItem, Text, useTheme } from 'react-native-elements'
 import { StyleProp, View, ViewStyle, Image, StyleSheet } from 'react-native'
 import { GetSensorDataQueryDto } from '../../data/api/models'
 import moment from 'moment'
