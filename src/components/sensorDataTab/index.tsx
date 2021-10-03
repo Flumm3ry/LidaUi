@@ -1,7 +1,7 @@
 import moment from 'moment'
 import React from 'react'
-import { View } from 'react-native'
-import { useTheme } from 'react-native-elements'
+import { ActivityIndicator, View } from 'react-native'
+import { Button, useTheme } from 'react-native-elements'
 import sensorNames from '../../constants/sensorNames'
 import { GetSensorDataQueryDto } from '../../data/api/models'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
@@ -14,7 +14,7 @@ import SystemStatus from './SystemStatus'
 export default function SensorDataTab() {
   const { horizontalPadding } = useGlobalStyles()
   const { theme } = useTheme()
-  const { sensorData, lastPolled } = useAppSelector(sensorDataSelector)
+  const { sensorData, lastPolled, state } = useAppSelector(sensorDataSelector)
 
   const getMostRecentByName = (name: string) =>
     [...sensorData]
@@ -53,7 +53,14 @@ export default function SensorDataTab() {
       }}
     >
       <SystemStatus />
-      <SensorList sensorData={mostRecentSensorData} lastPolled={moment(lastPolled).toDate()} />
+      {state === 'fulfilled' ? (
+        <>
+          <SensorList sensorData={mostRecentSensorData} lastPolled={moment(lastPolled).toDate()} />
+          <Button title="Download as CSV" containerStyle={{ margin: 30 }} onPress={downloadCsv} />
+        </>
+      ) : (
+        <ActivityIndicator size="large" color="white" />
+      )}
     </View>
   )
 }
