@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Button, Text, Divider, useTheme } from 'react-native-elements'
+import sensorNames from '../../constants/sensorNames'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
 
 interface SensorSelectorProps {
@@ -8,7 +9,13 @@ interface SensorSelectorProps {
 }
 
 export default function SensorSelector({ onSelected }: SensorSelectorProps) {
-  const buttons = ['temp', 'oxyg', 'meth', 'moist', 'carb']
+  const buttons = [
+    sensorNames.temperature,
+    sensorNames.oxygen,
+    sensorNames.methane,
+    sensorNames.moisture,
+    sensorNames.carbon,
+  ]
 
   const { horizontalPadding } = useGlobalStyles()
 

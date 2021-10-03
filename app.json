@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Lida Ui",
+    "slug": "lidaui",
+    "version": "1.0.0",
+    "sdkVersion": "41.0.0",
+    "primaryColor": "#0f8000",
+    "platforms": ["ios", "android", "web"],
+    "description": "This is a mobile app that allows the monitoring and limited control of an automated compost maker",
+    "android": {
+      "package": "com.flumm3ry.lidaui"
+    }
+  }
+}

@@ -6,6 +6,8 @@ import { ThemeProvider, Header, Theme } from 'react-native-elements'
 import TabNavigator from './src/components/navigation/TabNavigator'
 import { NavigationContainer } from '@react-navigation/native'
 import Logo from './assets/LidaLogo.png'
+import { Provider } from 'react-redux'
+import { store } from './src/states/store'
 
 const theme: Theme = {
   colors: {
@@ -50,12 +52,14 @@ const theme: Theme = {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaProvider>
-        <Header centerComponent={<Image source={Logo} style={{ width: 170, height: 66 }} />} />
-        <NavigationContainer>
-          <TabNavigator />
-        </NavigationContainer>
-      </SafeAreaProvider>
+      <Provider store={store}>
+        <SafeAreaProvider>
+          <Header centerComponent={<Image source={Logo} style={{ width: 170, height: 66 }} />} />
+          <NavigationContainer>
+            <TabNavigator />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </Provider>
     </ThemeProvider>
   )
 }
