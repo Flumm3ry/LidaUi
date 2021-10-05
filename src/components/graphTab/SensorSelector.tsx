@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 import { Button, Text, Divider, useTheme } from 'react-native-elements'
 import sensorNames from '../../constants/sensorNames'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
@@ -17,9 +17,27 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
     sensorNames.carbon,
   ]
 
+  const Icons = {
+    images: [
+      require('../../../assets/resources/CarbonRounded.png'),
+      require('../../../assets/resources/CelciusRounded.png'),
+      require('../../../assets/resources/MethaneRounded.png'),
+      require('../../../assets/resources/MoistureRounded.png'),
+      require('../../../assets/resources/OxygenRounded.png'),
+    ],
+  }
+
   const { horizontalPadding } = useGlobalStyles()
 
   const { theme } = useTheme()
+
+  const styles = StyleSheet.create({
+    sensorIconButton: {
+      borderRadius: 15,
+      backgroundColor: 'black',
+      margin: 10,
+    },
+  })
 
   return (
     <View
@@ -42,8 +60,13 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
             margin: 15,
           }}
         >
-          {buttons.map((b) => (
-            <Button key={b} title={b} onPress={() => onSelected(b)} />
+          {buttons.map((b, index) => (
+            <Button
+              buttonStyle={styles.sensorIconButton}
+              icon={<Image source={Icons.images[index]} style={{ width: 80, height: 80 }} />}
+              key={b}
+              onPress={() => onSelected(b)}
+            />
           ))}
         </View>
       </View>
