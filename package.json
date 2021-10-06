@@ -8,6 +8,7 @@
     "@react-navigation/routers": "^5.7.2",
     "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
+    "date-fns": "^2.25.0",
     "expo": "~41.0.0",
     "expo-sharing": "~9.1.2",
     "expo-web-browser": "~9.1.0",
