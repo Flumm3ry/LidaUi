@@ -35,7 +35,7 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
     sensorIconButton: {
       borderRadius: 15,
       backgroundColor: 'black',
-      margin: 10,
+      margin: 2,
     },
   })
 
@@ -57,13 +57,13 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            margin: 15,
+            margin: 10,
           }}
         >
           {buttons.map((b, index) => (
             <Button
               buttonStyle={styles.sensorIconButton}
-              icon={<Image source={Icons.images[index]} style={{ width: 80, height: 80 }} />}
+              icon={<Image source={Icons.images[index]} style={{ width: 60, height: 60 }} />}
               key={b}
               onPress={() => onSelected(b)}
             />

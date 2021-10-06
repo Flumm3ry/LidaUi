@@ -10,6 +10,7 @@ import { ConvertObjectToCsv, downloadStringAsFile } from '../../utils/csvHelper'
 import Graph from './Graph'
 import SensorSelector from './SensorSelector'
 import downloadIcon from '../../../assets/DownloadIcon.png'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default function GraphTab() {
   const { horizontalPadding } = useGlobalStyles()
@@ -65,57 +66,59 @@ export default function GraphTab() {
   })
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingLeft: horizontalPadding,
-        paddingRight: horizontalPadding,
-        backgroundColor: theme.colors?.black,
-      }}
-    >
-      {state === 'fulfilled' ? (
-        <>
-          <Graph graphPoints={graphPoints} sensorName={sensor} timespan={timespan} />
-          <View
-            style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              flexDirection: 'row',
-              width: '100%',
-              marginTop: 30,
-            }}
-          >
+    <ScrollView>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingLeft: horizontalPadding,
+          paddingRight: horizontalPadding,
+          backgroundColor: theme.colors?.black,
+        }}
+      >
+        {state === 'fulfilled' ? (
+          <>
+            <Graph graphPoints={graphPoints} sensorName={sensor} timespan={timespan} />
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                flexDirection: 'row',
+                width: '100%',
+                marginTop: 30,
+              }}
+            >
+              <Button
+                buttonStyle={styles.graphPeriodButton}
+                title="Day"
+                onPress={() => setTimespan('day')}
+              />
+              <Button
+                buttonStyle={styles.graphPeriodButton}
+                title="Week"
+                onPress={() => setTimespan('week')}
+              />
+              <Button
+                buttonStyle={styles.graphPeriodButton}
+                title="Month"
+                onPress={() => setTimespan('month')}
+              />
+            </View>
             <Button
-              buttonStyle={styles.graphPeriodButton}
-              title="Day"
-              onPress={() => setTimespan('day')}
-            />
-            <Button
-              buttonStyle={styles.graphPeriodButton}
-              title="Week"
-              onPress={() => setTimespan('week')}
-            />
-            <Button
-              buttonStyle={styles.graphPeriodButton}
-              title="Month"
-              onPress={() => setTimespan('month')}
-            />
-          </View>
-          <Button
-            icon={<Image source={downloadIcon} style={{ width: 40, height: 40, margin: 10 }} />}
-            iconRight
-            buttonStyle={styles.graphCSVButton}
-            title="Download to CSV File"
-            containerStyle={{ margin: 30 }}
-            onPress={downloadCsv}
-          ></Button>
-          <SensorSelector onSelected={(sensorName) => setSensor(sensorName)} />
-        </>
-      ) : (
-        <ActivityIndicator size="large" color="white" />
-      )}
-    </View>
+              icon={<Image source={downloadIcon} style={{ width: 40, height: 40, margin: 10 }} />}
+              iconRight
+              buttonStyle={styles.graphCSVButton}
+              title="Download to CSV File"
+              containerStyle={{ margin: 30 }}
+              onPress={downloadCsv}
+            ></Button>
+            <SensorSelector onSelected={(sensorName) => setSensor(sensorName)} />
+          </>
+        ) : (
+          <ActivityIndicator size="large" color="white" />
+        )}
+      </View>
+    </ScrollView>
   )
 }

@@ -11,6 +11,7 @@ import { ConvertObjectToCsv, downloadStringAsFile } from '../../utils/csvHelper'
 import SensorList from './SensorList'
 import SystemStatus from './SystemStatus'
 import downloadIcon from '../../../assets/DownloadIcon.png'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default function SensorDataTab() {
   const { horizontalPadding } = useGlobalStyles()
@@ -53,32 +54,37 @@ export default function SensorDataTab() {
   })
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        paddingLeft: horizontalPadding,
-        paddingRight: horizontalPadding,
-        paddingTop: 20,
-        backgroundColor: theme.colors?.black,
-      }}
-    >
-      <SystemStatus />
-      {state === 'fulfilled' ? (
-        <>
-          <SensorList sensorData={mostRecentSensorData} lastPolled={moment(lastPolled).toDate()} />
-          <Button
-            icon={<Image source={downloadIcon} style={{ width: 40, height: 40, margin: 10 }} />}
-            iconRight
-            buttonStyle={styles.sensorCSVButton}
-            title="Download to CSV File"
-            containerStyle={{ margin: 30 }}
-            onPress={downloadCsv}
-          ></Button>
-        </>
-      ) : (
-        <ActivityIndicator size="large" color="white" />
-      )}
-    </View>
+    <ScrollView>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          paddingLeft: horizontalPadding,
+          paddingRight: horizontalPadding,
+          paddingTop: 20,
+          backgroundColor: theme.colors?.black,
+        }}
+      >
+        <SystemStatus />
+        {state === 'fulfilled' ? (
+          <>
+            <SensorList
+              sensorData={mostRecentSensorData}
+              lastPolled={moment(lastPolled).toDate()}
+            />
+            <Button
+              icon={<Image source={downloadIcon} style={{ width: 40, height: 40, margin: 10 }} />}
+              iconRight
+              buttonStyle={styles.sensorCSVButton}
+              title="Download to CSV File"
+              containerStyle={{ margin: 30 }}
+              onPress={downloadCsv}
+            ></Button>
+          </>
+        ) : (
+          <ActivityIndicator size="large" color="white" />
+        )}
+      </View>
+    </ScrollView>
   )
 }
