@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { Button, View, TextInput } from 'react-native'
+import { View, TextInput, StyleSheet, StyleProp, ViewStyle } from 'react-native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
-import { Text, useTheme } from 'react-native-elements'
+import { Text, useTheme, Button } from 'react-native-elements'
 import { format } from 'date-fns'
 
 const DatePicker = () => {
@@ -17,8 +17,6 @@ const DatePicker = () => {
 
   const handleConfirm = (date: any) => {
     console.warn('A date has been picked: ', date)
-    // let inputs = [date];
-    // inputs.push(<TextInput style={{color:theme.colors?.white }}editable={false} value={componentRef.current.toString()}></TextInput>);
     componentRef.current = format(date, 'dd-MM-yyyy')
     hideDatePicker()
   }
@@ -27,9 +25,29 @@ const DatePicker = () => {
 
   const { theme } = useTheme()
 
+  const dateStyle = StyleSheet.create({
+    datePickStyle: {
+      borderRadius: 15,
+      borderStyle: 'solid',
+      borderColor: 'rgba(112, 112, 112, 1)',
+      borderWidth: 2,
+      paddingLeft: 20,
+      paddingRight: 20,
+      backgroundColor: 'rgba(25, 25, 27, 1)',
+    },
+  })
+
+  const container: StyleProp<ViewStyle> = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 14,
+  }
+
   return (
-    <View>
-      <Button title="Change Date" onPress={showDatePicker} />
+    <View style={container}>
+      <Button buttonStyle={dateStyle.datePickStyle} title="Change Date" onPress={showDatePicker} />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"

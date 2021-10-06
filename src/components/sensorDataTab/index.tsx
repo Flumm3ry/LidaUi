@@ -53,8 +53,8 @@ export default function SensorDataTab() {
         backgroundColor: theme.colors?.black,
       }}
     >
-      <DatePicker />
       <SystemStatus />
+      <DatePicker />
       {state === 'fulfilled' ? (
         <>
           <SensorList sensorData={mostRecentSensorData} lastPolled={moment(lastPolled).toDate()} />
