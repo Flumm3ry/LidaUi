@@ -67,6 +67,7 @@ export default function SensorDataTab() {
         }}
       >
         <SystemStatus />
+        <DatePicker />
         {state === 'fulfilled' ? (
           <>
             <SensorList
