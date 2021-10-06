@@ -10,6 +10,7 @@ import { sensorDataSelector } from '../../states/selectors'
 import { ConvertObjectToCsv, downloadStringAsFile } from '../../utils/csvHelper'
 import SensorList from './SensorList'
 import SystemStatus from './SystemStatus'
+import DatePicker from './DatePicker'
 
 export default function SensorDataTab() {
   const { horizontalPadding } = useGlobalStyles()
@@ -52,6 +53,7 @@ export default function SensorDataTab() {
         backgroundColor: theme.colors?.black,
       }}
     >
+      <DatePicker />
       <SystemStatus />
       {state === 'fulfilled' ? (
         <>
