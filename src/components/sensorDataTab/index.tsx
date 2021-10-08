@@ -16,11 +16,12 @@ import { ScrollView } from 'react-native-gesture-handler'
 export default function SensorDataTab() {
   const { horizontalPadding } = useGlobalStyles()
   const { theme } = useTheme()
-  const { sensorData, lastPolled, state } = useAppSelector(sensorDataSelector)
+  const { sensorData, state } = useAppSelector(sensorDataSelector)
+  const [dateSelected, setDateSelected] = React.useState<number>(moment().valueOf())
 
   const getMostRecentByName = (name: string) =>
     [...sensorData]
-      .filter((sd) => sd.sensorName === name)
+      .filter((sd) => sd.sensorName === name && sd.timeStamp <= dateSelected)
       .sort((sd) => sd.timeStamp)
       .reverse()
       .find(() => 1)
@@ -34,11 +35,17 @@ export default function SensorDataTab() {
         getMostRecentByName(sensorNames.temperature),
         getMostRecentByName(sensorNames.moisture),
       ].filter((sd) => sd) as GetSensorDataQueryDto[],
-    [sensorData]
+    [sensorData, dateSelected]
   )
 
   const downloadCsv = async () => {
-    const csvString: string = ConvertObjectToCsv(mostRecentSensorData)
+    const csvString: string = ConvertObjectToCsv(
+      mostRecentSensorData.map((sd) => ({
+        name: sd.sensorName,
+        value: sd.value,
+        dateTime: moment(sd.timeStamp).format('MMM Do HH:mm:ss'),
+      }))
+    )
 
     await downloadStringAsFile(csvString, `Sensor_Data-${moment().valueOf()}.csv`)
   }
@@ -70,7 +77,8 @@ export default function SensorDataTab() {
           <>
             <SensorList
               sensorData={mostRecentSensorData}
-              lastPolled={moment(lastPolled).toDate()}
+              dateSelected={dateSelected}
+              changeDateSelected={(newDate: number) => setDateSelected(newDate)}
             />
             <Button
               icon={<Image source={downloadIcon} style={{ width: 40, height: 40, margin: 10 }} />}

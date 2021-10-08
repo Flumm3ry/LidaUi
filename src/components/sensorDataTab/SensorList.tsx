@@ -4,6 +4,7 @@ import { StyleProp, View, ViewStyle, Image, StyleSheet } from 'react-native'
 import { GetSensorDataQueryDto } from '../../data/api/models'
 import moment from 'moment'
 import sensorNames from '../../constants/sensorNames'
+import DatePicker from './DatePicker'
 
 const Icons = {
   images: [
@@ -24,10 +25,15 @@ const styles = StyleSheet.create({
 
 interface SensorListProps {
   sensorData: GetSensorDataQueryDto[]
-  lastPolled: Date | undefined
+  dateSelected: number
+  changeDateSelected(newDate: number): void
 }
 
-export default function SensorList({ sensorData, lastPolled }: SensorListProps) {
+export default function SensorList({
+  sensorData,
+  dateSelected,
+  changeDateSelected,
+}: SensorListProps) {
   const getValueFromList = (sensorName: string) =>
     sensorData?.filter((s) => s.sensorName === sensorName).find(() => true)?.value || '--'
 
@@ -82,8 +88,9 @@ export default function SensorList({ sensorData, lastPolled }: SensorListProps) 
     <View style={{ width: '100%' }}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text>Sensor Data</Text>
-        {lastPolled && <Text>Last Polled {moment(lastPolled).fromNow()}</Text>}
+        <Text>Showing Data For {moment(dateSelected).fromNow()}</Text>
       </View>
+      <DatePicker onDateChanged={changeDateSelected} />
       <Divider />
       {list.map((l, index) => (
         <ListItem key={l.title} containerStyle={listItemStyle(l.colour)}>
