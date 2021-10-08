@@ -16,7 +16,7 @@ const initialState: SystemLogsState = {
 
 export const fetchSensorData = createAsyncThunk('sensorData/fetchSensorData', async () => {
   const response = await MyApi.readSensorData(
-    moment().subtract(1, 'month').valueOf(),
+    moment().subtract(2, 'months').valueOf(),
     moment().valueOf()
   )
 
