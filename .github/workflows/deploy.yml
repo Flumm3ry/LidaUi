@@ -17,4 +17,5 @@ jobs:
           expo-version: 4.x
           token: ${{ secrets.EXPO_TOKEN }}
       - run: yarn install
+      - run: expo login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.EXPO_PASSWORD }}
       - run: expo build:android -t apk
