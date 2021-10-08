@@ -1,11 +1,15 @@
-import React, { useRef, useState } from 'react'
-import { View, TextInput, StyleSheet, StyleProp, ViewStyle } from 'react-native'
+import React from 'react'
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
-import { Text, useTheme, Button } from 'react-native-elements'
-import { format } from 'date-fns'
+import { Button } from 'react-native-elements'
+import moment from 'moment'
 
-const DatePicker = () => {
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
+interface DatePickerProps {
+  onDateChanged(newDate: number): void
+}
+
+const DatePicker: React.FC<DatePickerProps> = ({ onDateChanged }) => {
+  const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false)
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)
@@ -15,15 +19,10 @@ const DatePicker = () => {
     setDatePickerVisibility(false)
   }
 
-  const handleConfirm = (date: any) => {
-    console.warn('A date has been picked: ', date)
-    componentRef.current = format(date, 'dd-MM-yyyy')
+  const handleConfirm = (date: Date) => {
+    onDateChanged(moment(date).endOf('day').valueOf())
     hideDatePicker()
   }
-
-  const componentRef = useRef('')
-
-  const { theme } = useTheme()
 
   const dateStyle = StyleSheet.create({
     datePickStyle: {
@@ -54,11 +53,6 @@ const DatePicker = () => {
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
-      <TextInput
-        style={{ color: theme.colors?.white }}
-        editable={false}
-        value={componentRef.current.toString()}
-      ></TextInput>
     </View>
   )
 }
