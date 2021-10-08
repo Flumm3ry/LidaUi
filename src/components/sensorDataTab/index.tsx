@@ -39,7 +39,13 @@ export default function SensorDataTab() {
   )
 
   const downloadCsv = async () => {
-    const csvString: string = ConvertObjectToCsv(mostRecentSensorData)
+    const csvString: string = ConvertObjectToCsv(
+      mostRecentSensorData.map((sd) => ({
+        name: sd.sensorName,
+        value: sd.value,
+        dateTime: moment(sd.timeStamp).format('MMM Do HH:mm:ss'),
+      }))
+    )
 
     await downloadStringAsFile(csvString, `Sensor_Data-${moment().valueOf()}.csv`)
   }
