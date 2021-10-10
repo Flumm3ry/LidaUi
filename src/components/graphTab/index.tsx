@@ -77,7 +77,7 @@ export default function GraphTab() {
           backgroundColor: theme.colors?.black,
         }}
       >
-        {state === 'fulfilled' ? (
+        {state !== 'loading' ? (
           <>
             <Graph graphPoints={graphPoints} sensorName={sensor} timespan={timespan} />
             <View
