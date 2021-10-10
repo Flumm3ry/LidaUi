@@ -1,6 +1,8 @@
+import { delay } from 'lodash'
 import React from 'react'
 import { View, StyleProp, ViewStyle } from 'react-native'
 import { Button, Text } from 'react-native-elements'
+import { resolve } from 'url'
 import { MyApi } from '../../data/myApi'
 
 const container: StyleProp<ViewStyle> = {
@@ -27,9 +29,12 @@ export default function SystemStatus() {
   }, [])
 
   const handleButtonClick = () => {
+    setIsLoading(true)
+
     MyApi.updateState({ isRunning: !online })
       .then((r) => setOnline(r.isRunning))
       .catch()
+      .finally(() => setIsLoading(false))
   }
 
   return (
@@ -38,7 +43,11 @@ export default function SystemStatus() {
         <Text>System Status:</Text>
         {online !== undefined && <Text>{online ? 'Online' : 'Offline'}</Text>}
       </View>
-      <Button title="Toggle Status" disabled={isLoading} onPress={handleButtonClick} />
+      <Button
+        title={isLoading ? 'Toggling Status' : 'Toggle Status'}
+        disabled={isLoading}
+        onPress={handleButtonClick}
+      />
     </View>
   )
 }
