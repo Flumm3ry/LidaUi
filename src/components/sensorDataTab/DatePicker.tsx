@@ -20,9 +20,9 @@ const DatePicker: React.FC<DatePickerProps> = ({ onDateChanged }) => {
   }
 
   const handleConfirm = (date: Date) => {
-    const momentDate = moment(date)
+    const momentDate = moment(date).endOf('day')
     const todaysDate = moment().valueOf()
-    onDateChanged(momentDate.isAfter(todaysDate) ? todaysDate : momentDate.endOf('day').valueOf())
+    onDateChanged(momentDate.isAfter(todaysDate) ? todaysDate : momentDate.valueOf())
     hideDatePicker()
   }
 

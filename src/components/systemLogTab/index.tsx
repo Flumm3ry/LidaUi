@@ -40,7 +40,7 @@ export default function SystemLogTab() {
           backgroundColor: theme.colors?.black,
         }}
       >
-        {state === 'fulfilled' ? (
+        {state !== 'loading' ? (
           <>
             <LogList motorLogs={motorLogs} sensorLogs={sensorLogs} selection={selection} />
             <View
