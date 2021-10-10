@@ -16,7 +16,7 @@ import TopTabBar from './TopTabBar'
 
 const { Navigator, Screen } = createMaterialTopTabNavigator()
 
-const REFRESH_TIME_IN_MINUTES = 5
+const REFRESH_TIME_IN_MINUTES = 2
 
 export default function TabNavigator() {
   const dispatch = useAppDispatch()
@@ -25,7 +25,7 @@ export default function TabNavigator() {
     dispatch(fetchSensorData())
     dispatch(fetchLogs())
 
-    setTimeout(startFetchDataLoop, 100 * 60 * REFRESH_TIME_IN_MINUTES)
+    setTimeout(startFetchDataLoop, 1000 * 60 * REFRESH_TIME_IN_MINUTES)
   }
 
   React.useEffect(() => {

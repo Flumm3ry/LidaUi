@@ -73,7 +73,7 @@ export default function SensorDataTab() {
         }}
       >
         <SystemStatus />
-        {state === 'fulfilled' ? (
+        {state !== 'loading' ? (
           <>
             <SensorList
               sensorData={mostRecentSensorData}

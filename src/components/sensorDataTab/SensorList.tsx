@@ -86,9 +86,8 @@ export default function SensorList({
 
   return (
     <View style={{ width: '100%' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text>Sensor Data</Text>
-        <Text>Showing Data For {moment(dateSelected).fromNow()}</Text>
+      <View style={{ marginVertical: 5 }}>
+        <Text>Showing newest data since {moment(dateSelected).fromNow()}...</Text>
       </View>
       <DatePicker onDateChanged={changeDateSelected} />
       <Divider />
