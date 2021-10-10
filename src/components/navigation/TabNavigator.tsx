@@ -16,17 +16,20 @@ import TopTabBar from './TopTabBar'
 
 const { Navigator, Screen } = createMaterialTopTabNavigator()
 
+const REFRESH_TIME_IN_MINUTES = 5
+
 export default function TabNavigator() {
   const dispatch = useAppDispatch()
 
-  const { state: sensorDataState } = useAppSelector(sensorDataSelector)
-  const { state: systemLogsState } = useAppSelector(systemLogsSelector)
-
-  const isLoading = sensorDataState == 'loading' || systemLogsState == 'loading'
-
-  React.useEffect(() => {
+  const startFetchDataLoop = () => {
     dispatch(fetchSensorData())
     dispatch(fetchLogs())
+
+    setTimeout(startFetchDataLoop, 100 * 60 * REFRESH_TIME_IN_MINUTES)
+  }
+
+  React.useEffect(() => {
+    startFetchDataLoop()
   }, [])
 
   return (

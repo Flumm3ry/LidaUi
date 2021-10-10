@@ -50,10 +50,10 @@ const systemLogsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchLogs.pending, (state) => {
-        state.state = state.motorLogs.length || state.sensorLogs.length ? 'refreshing' : 'loading'
+        state.state = state.state === 'idle' ? 'loading' : 'refreshing'
       })
       .addCase(fetchLogs.rejected, (state) => {
-        state.state = 'errored'
+        state.state = state.state === 'loading' ? 'errored' : 'fulfilled'
       })
       .addCase(fetchLogs.fulfilled, (state, { payload }) => {
         state.state = 'fulfilled'
