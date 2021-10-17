@@ -21,7 +21,7 @@ const initialState: SystemLogsState = {
 
 export const fetchLogs = createAsyncThunk('systemLogs/fetchLogs', async () => {
   const response = await MyApi.readSystemLog(
-    moment().subtract(1, 'week').valueOf(),
+    moment().subtract(1, 'months').valueOf(),
     moment().valueOf()
   )
 
