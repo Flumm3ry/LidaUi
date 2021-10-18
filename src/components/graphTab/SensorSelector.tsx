@@ -19,11 +19,11 @@ export default function SensorSelector({ onSelected }: SensorSelectorProps) {
 
   const Icons = {
     images: [
-      require('../../../assets/resources/CarbonRounded.png'),
       require('../../../assets/resources/CelciusRounded.png'),
+      require('../../../assets/resources/OxygenRounded.png'),
       require('../../../assets/resources/MethaneRounded.png'),
       require('../../../assets/resources/MoistureRounded.png'),
-      require('../../../assets/resources/OxygenRounded.png'),
+      require('../../../assets/resources/CarbonRounded.png'),
     ],
   }
 

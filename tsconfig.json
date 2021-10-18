@@ -13,5 +13,5 @@
     "moduleResolution": "node"
   },
   "extends": "expo/tsconfig.base",
-  "include": ["src"]
+  "include": ["src", "index.d.ts"]
 }

@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import moment from 'moment'
+import sensorNames from '../constants/sensorNames'
 import { GetSensorDataQueryDto } from '../data/api/models'
 import { MyApi } from '../data/myApi'
+
+const WARNING_TEMP = 85
 
 interface SystemLogsState {
   sensorData: GetSensorDataQueryDto[]
@@ -39,6 +42,19 @@ const sensorDataSlice = createSlice({
         state.lastPolled = moment().valueOf()
         state.state = 'fulfilled'
         state.sensorData = payload || []
+
+        const latestTemp = state.sensorData
+          .filter((s) => s.sensorName === sensorNames.temperature)
+          .sort((s) => s.timeStamp)
+          .reverse()
+          .find(() => 1)
+
+        if ((latestTemp?.value ?? 0) > WARNING_TEMP)
+          alert(
+            `Latest temperature was above ${WARNING_TEMP} degrees (${
+              latestTemp?.value
+            }) at [${moment(latestTemp?.timeStamp).format('MMM Do HH:mm:ss')}]`
+          )
       }),
 })
 

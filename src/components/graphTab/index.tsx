@@ -1,6 +1,6 @@
 import moment from 'moment'
 import React from 'react'
-import { ActivityIndicator, StyleProp, View, ViewStyle, StyleSheet, Image } from 'react-native'
+import { ActivityIndicator, View, StyleSheet, Image } from 'react-native'
 import { Button, useTheme } from 'react-native-elements'
 import sensorNames from '../../constants/sensorNames'
 import useGlobalStyles from '../../hooks/useGlobalStyles'
@@ -64,6 +64,11 @@ export default function GraphTab() {
       backgroundColor: 'rgba(0, 75, 166, 1)',
     },
   })
+
+  React.useEffect(() => {
+    if (state === 'errored')
+      alert('An unexpected error occurred, please restart the application to continue...')
+  }, [state])
 
   return (
     <ScrollView>
