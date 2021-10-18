@@ -28,6 +28,11 @@ export default function SystemLogTab() {
     },
   })
 
+  React.useEffect(() => {
+    if (state === 'errored')
+      alert('An unexpected error occurred, please restart the application to continue')
+  }, [state])
+
   return (
     <ScrollView>
       <View
