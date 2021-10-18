@@ -4,7 +4,7 @@ import sensorNames from '../constants/sensorNames'
 import { GetSensorDataQueryDto } from '../data/api/models'
 import { MyApi } from '../data/myApi'
 
-const WARNING_TEMP = 50
+const WARNING_TEMP = 85
 
 interface SystemLogsState {
   sensorData: GetSensorDataQueryDto[]
@@ -53,7 +53,7 @@ const sensorDataSlice = createSlice({
           alert(
             `Latest temperature was above ${WARNING_TEMP} degrees (${
               latestTemp?.value
-            }) at ${moment(latestTemp?.timeStamp).format('MMM Do HH:mm:ss')}`
+            }) at [${moment(latestTemp?.timeStamp).format('MMM Do HH:mm:ss')}]`
           )
       }),
 })
