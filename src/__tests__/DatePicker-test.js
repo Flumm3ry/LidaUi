@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Test from '.././components/graphTab/SensorSelector'
+import Test from '.././components/sensorDataTab/DatePicker'
 
 test('renders correctly', () => {
   const tree = renderer.create(<Test />).toJSON()

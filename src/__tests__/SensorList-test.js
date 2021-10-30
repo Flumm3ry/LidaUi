@@ -1,8 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Intro from './Intro'
+import Test from '.././components/sensorDataTab/SensorList'
 
 test('renders correctly', () => {
-  const tree = renderer.create(<Intro />).toJSON()
+  const tree = renderer.create(<Test />).toJSON()
   expect(tree).toMatchSnapshot()
 })
