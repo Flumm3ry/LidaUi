@@ -68,6 +68,13 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{ts,tsx}",
+      "!**/index.tsx",
+      "!**/App.tsx",
+      "!**/src/components/navigation/TabNavigator.tsx",
+      "!**/src/components/sensorDataTab/SystemStatus.tsx",
+      "!**/src/data/api/apis/default-api.ts",
+      "!**/src/states/**",
+      "!**/src/utils/**",
       "!**/coverage/**",
       "!**/node_modules/**",
       "!**/babel.config.js",

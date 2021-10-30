@@ -1,8 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Intro from '.././components/graphTab/index'
+import Test from '.././components/graphTab/Index'
 
 test('renders correctly', () => {
-  const tree = renderer.create(<Intro />).toJSON()
+  const tree = renderer.create(<Test />).toJSON()
   expect(tree).toMatchSnapshot()
 })
