@@ -13,6 +13,7 @@
     "expo-web-browser": "~9.1.0",
     "fetch": "^1.1.0",
     "husky": "^6.0.0",
+    "jest": "^27.3.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "portable-fetch": "^3.0.0",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.172",
     "@types/react": "~16.9.35",
@@ -44,12 +46,15 @@
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "husky": "^6.0.0",
+    "jest-expo": "^43.0.1",
     "prettier": "2.3.0",
     "pretty-quick": "^3.1.0",
+    "react-test-renderer": "^17.0.2",
     "typescript": "~4.0.0"
   },
   "scripts": {
     "start": "expo start",
+    "test": "jest",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -57,6 +62,27 @@
     "prepare": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --color --fix"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/index.tsx",
+      "!**/App.tsx",
+      "!**/src/components/navigation/TabNavigator.tsx",
+      "!**/src/components/sensorDataTab/SystemStatus.tsx",
+      "!**/src/data/api/apis/default-api.ts",
+      "!**/src/states/**",
+      "!**/src/utils/**",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+    ]
   },
   "private": true
 }

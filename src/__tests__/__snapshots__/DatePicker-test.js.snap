@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginBottom": 14,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 3,
+          "overflow": "hidden",
+        },
+        Object {
+          "borderRadius": 3,
+        },
+        undefined,
+        false,
+      ]
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(25, 25, 27, 1)",
+            "borderColor": "rgba(112, 112, 112, 1)",
+            "borderRadius": 15,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "padding": 8,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Change Date
+        </Text>
+      </View>
+    </View>
+  </View>
+  <Modal
+    animationType="none"
+    hardwareAccelerated={false}
+    isVisible={false}
+    onHide={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "black",
+          "bottom": 0,
+          "height": 1334,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+        }
+      }
+    />
+  </Modal>
+</View>
+`;
