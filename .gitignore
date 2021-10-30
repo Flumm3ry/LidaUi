@@ -64,3 +64,5 @@ web-build/
 
 ops/swaggerOutput
 ops/swagger-codegen-cli.jar
+
+coverage/
